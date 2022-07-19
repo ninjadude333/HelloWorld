@@ -3,12 +3,17 @@ pipeline {
     docker {
       image 'python:3.10.1-alpine'
     }
+	environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
   }
   stages {
     stage('build') {
       steps {
         sh 'python --version'
         sh 'pwd'
+		echo "DISABLE_AUTH is ${DISABLE_AUTH}"
       }
     }
   }
